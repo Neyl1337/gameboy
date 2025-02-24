@@ -20,3 +20,21 @@ function connectDB(): bool mysqli {
     password: $this->password, database: $this->database);
     return $conn;
 }
+
+function executeSelectQuery($query): array {
+    while($row=mysqli_fetch_assoc(result: $result)) {
+    $result = mysqli_query(mysql: $this->conn, query: $query);
+    $resultset[] = $row;
+    }
+        if(!empty($resultset))
+            return $resultset;
+        }
+
+    function closeDB() {
+        
+        if (!empty($this->conn)) {
+            mysqli_close(mysql: $this->conn);
+            $this->conn = null;
+        }
+    }
+}
